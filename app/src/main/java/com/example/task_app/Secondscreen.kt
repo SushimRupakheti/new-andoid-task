@@ -1,34 +1,38 @@
 package com.example.task_app
 
-import RecyclerAdapter
+
+
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.task_app.databinding.ActivitySecondScreenBinding
-import androidx.recyclerview.widget.RecyclerView
+import com.example.task_app.adapter.RecyclerAdapter
+import com.example.task_app.databinding.SecondscreenBinding
 
 
 class SecondScreen : AppCompatActivity() {
-    private lateinit var binding: ActivitySecondScreenBinding
+    lateinit var binding: SecondscreenBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        binding = ActivitySecondScreenBinding.inflate(layoutInflater)
+        binding = SecondscreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Collect data passed from the MainActivity
-        val data = ArrayList<Array<String?>>()
-        data.add(
-            arrayOf(
-                intent.getStringExtra("name"),
-                intent.getStringExtra("email"),
-                intent.getStringExtra("gender"),
-                intent.getStringExtra("country")
+        val name = intent.getStringExtra("name")
+        val email = intent.getStringExtra("email")
+        val gender = intent.getStringExtra("gender")
+        val country = intent.getStringExtra("country")
+
+
+        val data = listOf(
+            mapOf(
+                "Name" to name,
+                "Email" to email,
+                "Gender" to gender,
+                "Country" to country
             )
         )
-
         // Set up RecyclerView with the adapter
         val adapter = RecyclerAdapter(data)
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
@@ -36,3 +40,4 @@ class SecondScreen : AppCompatActivity() {
 
     }
 }
+

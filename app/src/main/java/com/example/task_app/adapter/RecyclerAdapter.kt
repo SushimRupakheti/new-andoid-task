@@ -1,35 +1,34 @@
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
-import com.example.task_app.databinding.RecyclerItemBinding
+package com.example.task_app.adapter
 
-class RecyclerAdapter(private val data: ArrayList<Array<String?>>) :
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import com.example.task_app.R
+
+class RecyclerAdapter(private val data: List<Map<String, String?>>) :
     RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
-    // ViewHolder Class to bind the views
-    inner class ViewHolder(private val binding: RecyclerItemBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-
-        fun bind(item: Array<String?>) {
-            binding.itemName.text = "Name: ${item[0]}"
-            binding.itemEmail.text = "Email: ${item[1]}"
-            binding.itemGender.text = "Gender: ${item[2]}"
-            binding.itemCountry.text = "Country: ${item[3]}"
-        }
+    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val itemName: TextView = view.findViewById(R.id.itemName)
+        val itemEmail: TextView = view.findViewById(R.id.itemEmail)
+        val itemGender: TextView = view.findViewById(R.id.itemGender)
+        val itemCountry: TextView = view.findViewById(R.id.itemCountry)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = RecyclerItemBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
-        )
-        return ViewHolder(binding)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.recycler_item, parent, false)
+        return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
-        holder.bind(item)
+        holder.itemName.text = "Name: ${item["Name"]}"
+        holder.itemEmail.text = "Email: ${item["Email"]}"
+        holder.itemGender.text = "Gender: ${item["Gender"]}"
+        holder.itemCountry.text = "Country: ${item["Country"]}"
     }
 
     override fun getItemCount(): Int = data.size
