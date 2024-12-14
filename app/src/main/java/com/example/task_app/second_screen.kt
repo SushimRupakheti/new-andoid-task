@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.task_app.databinding.ActivitySecondScreenBinding
+import com.example.task_app.databinding.ActivitySecond_screenBinding
 import androidx.recyclerview.widget.RecyclerView
 
 
@@ -15,7 +15,7 @@ class SecondScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        binding = ActivitySecondScreenBinding.inflate(layoutInflater)
+        binding = ActivitySecond_screen.inflate(layoutInflater)
         setContentView(binding.root)
 
         // Collect data passed from the MainActivity
